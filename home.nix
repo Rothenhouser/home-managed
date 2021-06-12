@@ -35,5 +35,32 @@
     pkgs.fish
     pkgs.htop
     pkgs.tmux
+    pkgs.tree
   ];
+
+  # Dotfiles (only what can't/shouldn't be managed through ready-
+  # made modules)
+  home.file.".ghci".text = ''    # could also use .source
+      :set prompt "λ> "
+  '';
+
+  # set $EDITOR to nvim so that `home-manager edit` works well
+  # programs.fish.shellInit = ''
+  #   set -g EDITOR nvim
+  # ''; 
+  programs.fish = {
+  # this generates a config.fish
+    enable = true;  
+    # This is mainly to allow `home-manager edit`.
+    # In fish the -x is necessary so that the variable is 
+    # exported to sub-processes (i.e. becomes an environment
+    # variable).
+    shellInit = ''
+      set -gx EDITOR nvim
+    '';
+    shellAliases = {
+      hme = "home-manager edit";
+      hms = "home-manager switch";
+    };
+  };
 }
