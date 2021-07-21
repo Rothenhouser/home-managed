@@ -23,6 +23,9 @@
 
   ##################### My own changes below ####################
 
+  # required for obsidian 
+  nixpkgs.config.allowUnfree = true;
+
   # Import other Nix files
   imports = [
     ./neovim.nix
@@ -31,11 +34,15 @@
 
   # Tools to get from nixpkgs
   # NB seems like these don't show up in nix-env -q 
-  home.packages = [
-    pkgs.fish
-    pkgs.htop
-    pkgs.tmux
-    pkgs.tree
+  home.packages = with pkgs; [
+    fish
+    htop
+    tmux
+    tree
+    ripgrep
+    exa
+    # obsidian  # not supported for darwin
+    bat
   ];
 
   # Dotfiles (only what can't/shouldn't be managed through ready-
@@ -44,10 +51,6 @@
       :set prompt "λ> "
   '';
 
-  # set $EDITOR to nvim so that `home-manager edit` works well
-  # programs.fish.shellInit = ''
-  #   set -g EDITOR nvim
-  # ''; 
   programs.fish = {
   # this generates a config.fish
     enable = true;  
@@ -61,6 +64,10 @@
     shellAliases = {
       hme = "home-manager edit";
       hms = "home-manager switch";
+      # get a font with icons from https://github.com/ryanoasis/nerd-fonts
+      ll  = "exa --icons -l";
+      la  = "exa --icons -la";
+      vim = "nvim";
     };
   };
 }
