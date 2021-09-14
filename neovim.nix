@@ -6,6 +6,9 @@
   programs.neovim = {
     enable = true;
 
+    # Sets alias vim=nvim
+    # vimAlias = true;
+
     # this still needs to come from .vimrc so we can also
     # use that in .ideavimrc
     # hmmmm can I also deploy that with Nix?
@@ -19,8 +22,8 @@
       vim-nix
 
       # UI
-      gruvbox
-      vim-airline
+      # gruvbox
+      # vim-airline
 
       # Editor features
       vim-surround  # move this to .vimrc

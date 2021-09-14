@@ -8,8 +8,8 @@
   # paths it should manage.
 
   # todo this needs to be profile-dependent
-  home.username = "lambda";
-  home.homeDirectory = "/Users/lambda";
+  home.username = "nicolar";
+  home.homeDirectory = "/home/nicolar";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -39,10 +39,13 @@
     htop
     tmux
     tree
-    ripgrep
-    exa
+    exa  # better ls
     # obsidian  # not supported for darwin
     bat
+    fd  # find files
+    fzf  # find files interactively
+    ripgrep  # find in files
+    jq  # JSON processor
   ];
 
   # Dotfiles (only what can't/shouldn't be managed through ready-
@@ -64,10 +67,10 @@
     shellAliases = {
       hme = "home-manager edit";
       hms = "home-manager switch";
+      nixup = "nix-channel --update && nix-env -u";
       # get a font with icons from https://github.com/ryanoasis/nerd-fonts
       ll  = "exa --icons -l";
       la  = "exa --icons -la";
-      vim = "nvim";
     };
   };
 }
